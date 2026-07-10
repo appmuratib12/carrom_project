@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import '../Appconstant/app_colors.dart';
 
+
 class LoginScreen1 extends StatefulWidget {
   const LoginScreen1({super.key});
 
   @override
   State<LoginScreen1> createState() => _LoginScreen1State();
 }
-
-class _LoginScreen1State extends State<LoginScreen1>
-    with TickerProviderStateMixin {
+class _LoginScreen1State extends State<LoginScreen1> with TickerProviderStateMixin {
   late AnimationController _entryController;
   late AnimationController _floatController;
   late AnimationController _buttonController;
-
   late Animation<Offset> _headerSlide;
   late Animation<double> _headerOpacity;
   late Animation<Offset> _formSlide;
@@ -33,7 +31,6 @@ class _LoginScreen1State extends State<LoginScreen1>
   @override
   void initState() {
     super.initState();
-
     _entryController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 900),
@@ -254,7 +251,7 @@ class _LoginScreen1State extends State<LoginScreen1>
                             Row(
                               children: [
                                 Expanded(
-                                  child: _SocialButton(
+                                  child: SocialButton(
                                     emoji: '🔍',
                                     label: 'Google',
                                     onTap: () {},
@@ -262,7 +259,7 @@ class _LoginScreen1State extends State<LoginScreen1>
                                 ),
                                 const SizedBox(width: 12),
                                 Expanded(
-                                  child: _SocialButton(
+                                  child: SocialButton(
                                     emoji: '🍎',
                                     label: 'Apple',
                                     onTap: () {},
@@ -305,7 +302,8 @@ class _LoginScreen1State extends State<LoginScreen1>
                             // Email field
                             _buildLabel('Email address'),
                             const SizedBox(height: 8),
-                            _FancyTextField(
+                            FancyTextField(
+                              key: const Key('emailField'),
                               controller: _emailController,
                               focusNode: _emailFocus,
                               hint: 'you@example.com',
@@ -319,21 +317,25 @@ class _LoginScreen1State extends State<LoginScreen1>
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 _buildLabel('Password'),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Text(
-                                    'Forgot password?',
-                                    style: TextStyle(
-                                      color: AppColors.limeGreen,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w600,
+                                Flexible(
+                                  child: GestureDetector(
+                                    onTap: () {},
+                                    child: Text(
+                                      'Forgot password?',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: AppColors.limeGreen,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                             const SizedBox(height: 8),
-                            _FancyTextField(
+                            FancyTextField(
+                              key: const Key('passwordField'),
                               controller: _passwordController,
                               focusNode: _passwordFocus,
                               hint: '••••••••',
@@ -356,6 +358,7 @@ class _LoginScreen1State extends State<LoginScreen1>
                             const SizedBox(height: 16),
                             // Remember me
                             GestureDetector(
+                              key: const Key('rememberMe'),
                               onTap: () =>
                                   setState(() => _rememberMe = !_rememberMe),
                               child: Row(
@@ -405,6 +408,7 @@ class _LoginScreen1State extends State<LoginScreen1>
                               builder: (_, _) => Transform.scale(
                                 scale: _buttonScale.value,
                                 child: GestureDetector(
+                                  key: const Key('loginButton'),
                                   onTap: _handleLogin,
                                   child: AnimatedContainer(
                                     duration: const Duration(milliseconds: 300),
@@ -527,7 +531,7 @@ class _LoginScreen1State extends State<LoginScreen1>
   }
 }
 
-class _FancyTextField extends StatefulWidget {
+class FancyTextField extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
   final String hint;
@@ -537,7 +541,7 @@ class _FancyTextField extends StatefulWidget {
   final Color accentColor;
   final Widget? suffix;
 
-  const _FancyTextField({
+  const FancyTextField({super.key,
     required this.controller,
     required this.focusNode,
     required this.hint,
@@ -549,10 +553,9 @@ class _FancyTextField extends StatefulWidget {
   });
 
   @override
-  State<_FancyTextField> createState() => _FancyTextFieldState();
+  State<FancyTextField> createState() => FancyTextFieldState();
 }
-
-class _FancyTextFieldState extends State<_FancyTextField> {
+class FancyTextFieldState extends State<FancyTextField> {
   bool _isFocused = false;
 
   @override
@@ -625,23 +628,21 @@ class _FancyTextFieldState extends State<_FancyTextField> {
     );
   }
 }
-
-class _SocialButton extends StatefulWidget {
+class SocialButton extends StatefulWidget {
   final String emoji;
   final String label;
   final VoidCallback onTap;
 
-  const _SocialButton({
+  const SocialButton({super.key,
     required this.emoji,
     required this.label,
     required this.onTap,
   });
 
   @override
-  State<_SocialButton> createState() => _SocialButtonState();
+  State<SocialButton> createState() => SocialButtonState();
 }
-
-class _SocialButtonState extends State<_SocialButton> {
+class SocialButtonState extends State<SocialButton> {
   bool _pressed = false;
 
   @override
@@ -691,7 +692,6 @@ class _SocialButtonState extends State<_SocialButton> {
     );
   }
 }
-
 class _WavePainter extends CustomPainter {
   final double animValue;
 
