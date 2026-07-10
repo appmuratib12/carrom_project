@@ -1,8 +1,8 @@
 import 'package:carrom_project/Utils/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../Appconstant/AppColors.dart';
-import 'TravelApp.dart';
+import '../Appconstant/app_colors.dart';
+import 'travel_app.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -79,8 +79,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     } else {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (_, a, __) => LoginScreen1(),
-          transitionsBuilder: (_, anim, __, child) => FadeTransition(
+          pageBuilder: (_, a, _) => LoginScreen1(),
+          transitionsBuilder: (_, anim, _, child) => FadeTransition(
             opacity: anim,
             child: child,
           ),
@@ -92,7 +92,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -126,7 +125,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.transparent,
-                    _pages[_currentPage].gradient.last.withOpacity(0.95),
+                    _pages[_currentPage].gradient.last.withValues(alpha: 0.95),
                     _pages[_currentPage].gradient.last,
                   ],
                 ),
@@ -147,7 +146,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         decoration: BoxDecoration(
                           color: i == _currentPage
                               ? _pages[_currentPage].accentColor
-                              : AppColors.white.withOpacity(0.3),
+                              : AppColors.white.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -163,13 +162,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       gradient: LinearGradient(
                         colors: [
                           _pages[_currentPage].accentColor,
-                          _pages[_currentPage].accentColor.withOpacity(0.8),
+                          _pages[_currentPage].accentColor.withValues(alpha: 0.8),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: _pages[_currentPage].accentColor.withOpacity(0.4),
+                          color: _pages[_currentPage].accentColor.withValues(alpha: 0.4),
                           blurRadius: 20,
                           offset: const Offset(0, 8),
                         ),
@@ -213,8 +212,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       onTap: () {
                         Navigator.of(context).pushReplacement(
                           PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => const LoginScreen(),
-                            transitionsBuilder: (_, a, __, child) =>
+                            pageBuilder: (_, _, _) => const LoginScreen(),
+                            transitionsBuilder: (_, a, _, child) =>
                                 FadeTransition(opacity: a, child: child),
                             transitionDuration: const Duration(milliseconds: 400),
                           ),
@@ -223,7 +222,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       child: Text(
                         'Skip for now',
                         style: TextStyle(
-                          color: AppColors.white.withOpacity(0.5),
+                          color: AppColors.white.withValues(alpha: 0.5),
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
@@ -273,7 +272,7 @@ class _OnboardingPage extends StatelessWidget {
               height: 250,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: data.accentColor.withOpacity(0.08),
+                color: data.accentColor.withValues(alpha: 0.08),
               ),
             ),
           ),
@@ -285,7 +284,7 @@ class _OnboardingPage extends StatelessWidget {
               height: 200,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: data.accentColor.withOpacity(0.06),
+                color: data.accentColor.withValues(alpha: 0.06),
               ),
             ),
           ),
@@ -299,7 +298,7 @@ class _OnboardingPage extends StatelessWidget {
                   height: size.height * 0.42,
                   child: AnimatedBuilder(
                     animation: floatController,
-                    builder: (_, __) {
+                    builder: (_, _) {
                       final floatOffset = math.sin(floatController.value * math.pi) * 12;
                       return Stack(
                         alignment: Alignment.center,
@@ -310,10 +309,10 @@ class _OnboardingPage extends StatelessWidget {
                             height: 220,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: data.accentColor.withOpacity(0.12),
+                              color: data.accentColor.withValues(alpha: 0.12),
                               boxShadow: [
                                 BoxShadow(
-                                  color: data.accentColor.withOpacity(0.2),
+                                  color: data.accentColor.withValues(alpha: 0.2),
                                   blurRadius: 60,
                                   spreadRadius: 20,
                                 ),
@@ -326,7 +325,7 @@ class _OnboardingPage extends StatelessWidget {
                             height: 160,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: data.accentColor.withOpacity(0.15),
+                              color: data.accentColor.withValues(alpha: 0.15),
                             ),
                           ),
                           // Center main emoji
@@ -378,7 +377,7 @@ class _OnboardingPage extends StatelessWidget {
                           letterSpacing: -0.5,
                           shadows: [
                             Shadow(
-                              color: Colors.black.withOpacity(0.2),
+                              color: Colors.black.withValues(alpha: 0.2),
                               offset: const Offset(0, 2),
                               blurRadius: 8,
                             ),
@@ -391,7 +390,7 @@ class _OnboardingPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
-                          color: AppColors.white.withOpacity(0.75),
+                          color: AppColors.white.withValues(alpha: 0.75),
                           height: 1.6,
                           fontWeight: FontWeight.w400,
                         ),

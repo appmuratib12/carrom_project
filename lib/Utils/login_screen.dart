@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../Appconstant/AppColors.dart';
+import '../Appconstant/app_colors.dart';
 
 class LoginScreen1 extends StatefulWidget {
   const LoginScreen1({super.key});
@@ -47,26 +47,26 @@ class _LoginScreen1State extends State<LoginScreen1>
       duration: const Duration(milliseconds: 150),
     );
 
-    _headerSlide = Tween<Offset>(
-      begin: const Offset(0, -0.3),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _entryController,
-      curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic),
-    ));
+    _headerSlide = Tween<Offset>(begin: const Offset(0, -0.3), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _entryController,
+            curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic),
+          ),
+        );
     _headerOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _entryController,
         curve: const Interval(0.0, 0.5),
       ),
     );
-    _formSlide = Tween<Offset>(
-      begin: const Offset(0, 0.4),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _entryController,
-      curve: const Interval(0.3, 1.0, curve: Curves.easeOutCubic),
-    ));
+    _formSlide = Tween<Offset>(begin: const Offset(0, 0.4), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _entryController,
+            curve: const Interval(0.3, 1.0, curve: Curves.easeOutCubic),
+          ),
+        );
     _formOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _entryController,
@@ -115,7 +115,7 @@ class _LoginScreen1State extends State<LoginScreen1>
             right: 0,
             child: AnimatedBuilder(
               animation: _floatController,
-              builder: (_, __) => CustomPaint(
+              builder: (_, _) => CustomPaint(
                 size: Size(size.width, size.height * 0.42),
                 painter: _WavePainter(_floatController.value),
               ),
@@ -126,15 +126,18 @@ class _LoginScreen1State extends State<LoginScreen1>
           ...List.generate(6, (i) {
             final emojis = ['🥦', '🍎', '🥕', '🍋', '🥑', '🍓'];
             final positions = [
-              Offset(0.08, 0.06), Offset(0.85, 0.03), Offset(0.92, 0.16),
-              Offset(0.05, 0.22), Offset(0.78, 0.25), Offset(0.5, 0.02),
+              Offset(0.08, 0.06),
+              Offset(0.85, 0.03),
+              Offset(0.92, 0.16),
+              Offset(0.05, 0.22),
+              Offset(0.78, 0.25),
+              Offset(0.5, 0.02),
             ];
             return AnimatedBuilder(
               animation: _floatController,
-              builder: (_, __) {
-                final floatY = math.sin(
-                      _floatController.value * math.pi + i * 1.2,
-                    ) * 6;
+              builder: (_, _) {
+                final floatY =
+                    math.sin(_floatController.value * math.pi + i * 1.2) * 6;
                 return Positioned(
                   left: positions[i].dx * size.width,
                   top: positions[i].dy * size.height * 0.42 + floatY,
@@ -177,14 +180,19 @@ class _LoginScreen1State extends State<LoginScreen1>
                                   shape: BoxShape.circle,
                                   boxShadow: [
                                     BoxShadow(
-                                      color: AppColors.forestGreen.withOpacity(0.3),
+                                      color: AppColors.forestGreen.withValues(
+                                        alpha: 0.3,
+                                      ),
                                       blurRadius: 24,
                                       offset: const Offset(0, 8),
                                     ),
                                   ],
                                 ),
                                 child: const Center(
-                                  child: Text('🛒', style: TextStyle(fontSize: 38)),
+                                  child: Text(
+                                    '🛒',
+                                    style: TextStyle(fontSize: 38),
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: 16),
@@ -202,7 +210,7 @@ class _LoginScreen1State extends State<LoginScreen1>
                                 'Sign in to your FreshCart account',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: AppColors.white.withOpacity(0.8),
+                                  color: AppColors.white.withValues(alpha: 0.8),
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -226,12 +234,14 @@ class _LoginScreen1State extends State<LoginScreen1>
                           borderRadius: BorderRadius.circular(32),
                           boxShadow: [
                             BoxShadow(
-                              color: AppColors.forestGreen.withOpacity(0.12),
+                              color: AppColors.forestGreen.withValues(
+                                alpha: 0.12,
+                              ),
                               blurRadius: 40,
                               offset: const Offset(0, -8),
                             ),
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.06),
+                              color: Colors.black.withValues(alpha: 0.06),
                               blurRadius: 20,
                               offset: const Offset(0, 8),
                             ),
@@ -271,7 +281,9 @@ class _LoginScreen1State extends State<LoginScreen1>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 14,
+                                  ),
                                   child: Text(
                                     'or continue with email',
                                     style: TextStyle(
@@ -329,8 +341,9 @@ class _LoginScreen1State extends State<LoginScreen1>
                               obscure: _obscurePassword,
                               accentColor: AppColors.forestGreen,
                               suffix: GestureDetector(
-                                onTap: () =>
-                                    setState(() => _obscurePassword = !_obscurePassword),
+                                onTap: () => setState(
+                                  () => _obscurePassword = !_obscurePassword,
+                                ),
                                 child: Icon(
                                   _obscurePassword
                                       ? Icons.visibility_off_outlined
@@ -375,7 +388,9 @@ class _LoginScreen1State extends State<LoginScreen1>
                                   Text(
                                     'Keep me signed in',
                                     style: TextStyle(
-                                      color: AppColors.charcoal.withOpacity(0.7),
+                                      color: AppColors.charcoal.withValues(
+                                        alpha: 0.7,
+                                      ),
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -387,7 +402,7 @@ class _LoginScreen1State extends State<LoginScreen1>
                             // Login button
                             AnimatedBuilder(
                               animation: _buttonScale,
-                              builder: (_, __) => Transform.scale(
+                              builder: (_, _) => Transform.scale(
                                 scale: _buttonScale.value,
                                 child: GestureDetector(
                                   onTap: _handleLogin,
@@ -407,7 +422,8 @@ class _LoginScreen1State extends State<LoginScreen1>
                                       borderRadius: BorderRadius.circular(18),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: AppColors.forestGreen.withOpacity(0.4),
+                                          color: AppColors.forestGreen
+                                              .withValues(alpha: 0.4),
                                           blurRadius: 20,
                                           offset: const Offset(0, 8),
                                         ),
@@ -456,10 +472,7 @@ class _LoginScreen1State extends State<LoginScreen1>
 
                   // Sign up link
                   Padding(
-                    padding: EdgeInsets.only(
-                      top: 24,
-                      bottom: bottomPad + 24,
-                    ),
+                    padding: EdgeInsets.only(top: 24, bottom: bottomPad + 24),
                     child: SlideTransition(
                       position: _formSlide,
                       child: FadeTransition(
@@ -468,7 +481,7 @@ class _LoginScreen1State extends State<LoginScreen1>
                           text: TextSpan(
                             text: "Don't have an account? ",
                             style: TextStyle(
-                              color: AppColors.charcoal.withOpacity(0.5),
+                              color: AppColors.charcoal.withValues(alpha: 0.5),
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                             ),
@@ -564,7 +577,7 @@ class _FancyTextFieldState extends State<_FancyTextField> {
         boxShadow: _isFocused
             ? [
                 BoxShadow(
-                  color: widget.accentColor.withOpacity(0.12),
+                  color: widget.accentColor.withValues(alpha: 0.12),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),
@@ -584,7 +597,7 @@ class _FancyTextFieldState extends State<_FancyTextField> {
         decoration: InputDecoration(
           hintText: widget.hint,
           hintStyle: TextStyle(
-            color: AppColors.grey.withOpacity(0.7),
+            color: AppColors.grey.withValues(alpha: 0.7),
             fontSize: 15,
             fontWeight: FontWeight.w400,
           ),
@@ -642,14 +655,20 @@ class _SocialButtonState extends State<_SocialButton> {
       onTapCancel: () => setState(() => _pressed = false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        transform: Matrix4.identity()..scale(_pressed ? 0.96 : 1.0),
+        transform: Matrix4.identity()
+          ..scaleByDouble(
+            _pressed ? 0.96 : 1.0, // x
+            _pressed ? 0.96 : 1.0, // y
+            1.0, // z
+            1.0, // w
+          ),
         height: 52,
         decoration: BoxDecoration(
           color: _pressed ? AppColors.softCream : AppColors.lightGrey,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: _pressed
-                ? AppColors.forestGreen.withOpacity(0.3)
+                ? AppColors.forestGreen.withValues(alpha: 0.3)
                 : Colors.transparent,
           ),
         ),
@@ -675,6 +694,7 @@ class _SocialButtonState extends State<_SocialButton> {
 
 class _WavePainter extends CustomPainter {
   final double animValue;
+
   _WavePainter(this.animValue);
 
   @override
@@ -690,18 +710,20 @@ class _WavePainter extends CustomPainter {
 
     // Decorative blobs
     final blobPaint = Paint()
-      ..color = const Color(0xFF52B788).withOpacity(0.18);
+      ..color = const Color(0xFF52B788).withValues(alpha: 0.18);
     canvas.drawCircle(
-        Offset(size.width * 0.9, size.height * 0.15),
-        size.width * 0.35,
-        blobPaint);
+      Offset(size.width * 0.9, size.height * 0.15),
+      size.width * 0.35,
+      blobPaint,
+    );
 
     final blobPaint2 = Paint()
-      ..color = const Color(0xFF74C69D).withOpacity(0.12);
+      ..color = const Color(0xFF74C69D).withValues(alpha: 0.12);
     canvas.drawCircle(
-        Offset(size.width * 0.1, size.height * 0.7),
-        size.width * 0.28,
-        blobPaint2);
+      Offset(size.width * 0.1, size.height * 0.7),
+      size.width * 0.28,
+      blobPaint2,
+    );
 
     // Wave bottom edge
     final wavePaint = Paint()
@@ -716,7 +738,8 @@ class _WavePainter extends CustomPainter {
     final waveOffset = animValue * math.pi * 2;
 
     for (double x = 0; x <= size.width; x += 1) {
-      final y = size.height * 0.75 +
+      final y =
+          size.height * 0.75 +
           waveHeight *
               math.sin((x / size.width * 2 * math.pi) + waveOffset) *
               0.5 +

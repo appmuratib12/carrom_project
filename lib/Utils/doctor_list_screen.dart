@@ -144,7 +144,7 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      barrierColor: Colors.black.withOpacity(0.45),
+      barrierColor: Colors.black.withValues(alpha: 0.45),
       builder: (_) => DraggableScrollableSheet(
         initialChildSize: 0.75,
         minChildSize: 0.5,
@@ -325,7 +325,7 @@ class _FilterChip extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 6, vertical: 1),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.25),
+                  color: Colors.white.withValues(alpha: 0.25),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
@@ -544,7 +544,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                             border: Border(
                               bottom: BorderSide(
                                   color: AppColors.border
-                                      .withOpacity(0.6),
+                                      .withValues(alpha: 0.6),
                                   width: 0.5),
                             ),
                           ),
@@ -573,7 +573,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                                   decoration: BoxDecoration(
                                     color: isActive
                                         ? Colors.white
-                                        .withOpacity(0.3)
+                                        .withValues(alpha: 0.3)
                                         : AppColors.green,
                                     shape: BoxShape.circle,
                                   ),
@@ -715,11 +715,11 @@ class _OptionRow extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: isSelected && !isSelectAll
-              ? AppColors.greenLight.withOpacity(0.5)
+              ? AppColors.greenLight.withValues(alpha: 0.5)
               : Colors.white,
           border: Border(
             bottom: BorderSide(
-                color: AppColors.border.withOpacity(0.7),
+                color: AppColors.border.withValues(alpha: 0.7),
                 width: 0.5),
           ),
         ),

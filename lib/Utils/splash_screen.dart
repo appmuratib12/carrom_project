@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../Appconstant/AppColors.dart';
+import '../Appconstant/app_colors.dart';
 import 'onboarding_screen.dart';
 
 class SplashScreen1 extends StatefulWidget {
@@ -86,7 +86,7 @@ class _SplashScreen1State extends State<SplashScreen1>
     if (mounted) {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (_, __, ___) => const OnboardingScreen(),
+          pageBuilder: (_, _, _) => const OnboardingScreen(),
           transitionDuration: Duration.zero,
         ),
       );
@@ -154,7 +154,7 @@ class _SplashScreen1State extends State<SplashScreen1>
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.darkGreen.withOpacity(0.4),
+                                  color: AppColors.darkGreen.withValues(alpha: 0.4),
                                   blurRadius: 30,
                                   offset: const Offset(0, 12),
                                 ),
@@ -280,7 +280,7 @@ class BlobPainter extends CustomPainter {
       canvas,
       Offset(size.width * 0.85, size.height * 0.1),
       size.width * 0.45 * progress,
-      const Color(0xFF52B788).withOpacity(0.25),
+      const Color(0xFF52B788).withValues(alpha: 0.25),
       animValue,
     );
 
@@ -289,7 +289,7 @@ class BlobPainter extends CustomPainter {
       canvas,
       Offset(size.width * 0.1, size.height * 0.88),
       size.width * 0.5 * progress,
-      const Color(0xFF40916C).withOpacity(0.35),
+      const Color(0xFF40916C).withValues(alpha: 0.35),
       animValue + 0.5,
     );
 
@@ -298,7 +298,7 @@ class BlobPainter extends CustomPainter {
       canvas,
       Offset(size.width * 0.15, size.height * 0.2),
       size.width * 0.2 * progress,
-      const Color(0xFFF4A261).withOpacity(0.15),
+      const Color(0xFFF4A261).withValues(alpha: 0.15),
       animValue + 0.25,
     );
   }

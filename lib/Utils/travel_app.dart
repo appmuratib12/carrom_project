@@ -228,7 +228,7 @@ class _LoginScreenState extends State<LoginScreen>
                 width: r.nextDouble() * 2.5 + 0.5,
                 height: r.nextDouble() * 2.5 + 0.5,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(r.nextDouble() * 0.6 + 0.2),
+                  color: Colors.white.withValues(alpha:r.nextDouble() * 0.6 + 0.2),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -274,12 +274,12 @@ class _LoginScreenState extends State<LoginScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.10),
+        color: Colors.white.withValues(alpha: 0.10),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withOpacity(0.18), width: 1),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.18), width: 1),
         boxShadow: [
           BoxShadow(
-            color: accent.withOpacity(0.25),
+            color: accent.withValues(alpha: .25),
             blurRadius: 18,
             offset: const Offset(0, 4),
           ),
@@ -302,7 +302,7 @@ class _LoginScreenState extends State<LoginScreen>
                       letterSpacing: 0.3)),
               Text(country,
                   style: GoogleFonts.poppins(
-                      color: Colors.white.withOpacity(0.55),
+                      color: Colors.white.withValues(alpha: 0.55),
                       fontSize: 10,
                       fontWeight:FontWeight.w500,
                       letterSpacing: 0.5)),
@@ -330,12 +330,12 @@ class _LoginScreenState extends State<LoginScreen>
           topRight: Radius.circular(36),
         ),
         border: Border.all(
-          color: Colors.white.withOpacity(0.08),
+          color: Colors.white.withValues(alpha: 0.08),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.5),
+            color: Colors.black.withValues(alpha: 0.5),
             blurRadius: 40,
             offset: const Offset(0, -10),
           ),
@@ -354,7 +354,7 @@ class _LoginScreenState extends State<LoginScreen>
                 width: 44,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -487,7 +487,7 @@ class _LoginScreenState extends State<LoginScreen>
                       Text(
                         'Remember me',
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withValues(alpha: 0.5),
                           fontSize: 13,
                         ),
                       ),
@@ -513,18 +513,18 @@ class _LoginScreenState extends State<LoginScreen>
             // Divider
             Row(
               children: [
-                Expanded(child: Divider(color: Colors.white.withOpacity(0.12))),
+                Expanded(child: Divider(color: Colors.white.withValues(alpha: 0.12))),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14),
                   child: Text(
                     'or continue with',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.35),
+                      color: Colors.white.withValues(alpha: 0.35),
                       fontSize: 12,
                     ),
                   ),
                 ),
-                Expanded(child: Divider(color: Colors.white.withOpacity(0.12))),
+                Expanded(child: Divider(color: Colors.white.withValues(alpha: 0.12))),
               ],
             ),
             const SizedBox(height: 18),
@@ -578,9 +578,9 @@ class _LoginScreenState extends State<LoginScreen>
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.06),
+        color: Colors.white.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withOpacity(0.10), width: 1),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.10), width: 1),
       ),
       child: TextField(
         controller: controller,
@@ -589,7 +589,7 @@ class _LoginScreenState extends State<LoginScreen>
         style: GoogleFonts.poppins(color: Colors.white, fontSize: 15,fontWeight:FontWeight.w500),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 14),
+          hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.3), fontSize: 14),
           prefixIcon: Icon(icon, color: Colors.white38, size: 20),
           suffixIcon: suffixIcon,
           border: InputBorder.none,
@@ -610,7 +610,7 @@ class _LoginScreenState extends State<LoginScreen>
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFFF6B6B).withOpacity(0.45),
+            color: const Color(0xFFFF6B6B).withValues(alpha: 0.45),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -646,9 +646,9 @@ class _LoginScreenState extends State<LoginScreen>
     return Container(
       height: 48,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withOpacity(0.09), width: 1),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.09), width: 1),
       ),
       child: Center(
         child: Text(
@@ -715,7 +715,7 @@ class FlightPathPainter extends CustomPainter {
 
     // Glow
     final glowPaint = Paint()
-      ..color = const Color(0xFFFFD166).withOpacity(0.2)
+      ..color = const Color(0xFFFFD166).withValues(alpha: 0.2)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 8
       ..strokeCap = StrokeCap.round
@@ -724,7 +724,7 @@ class FlightPathPainter extends CustomPainter {
 
     // Dashed trail
     final dashPaint = Paint()
-      ..color = const Color(0xFFFFD166).withOpacity(0.55)
+      ..color = const Color(0xFFFFD166).withValues(alpha: 0.55)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2
       ..strokeCap = StrokeCap.round;
@@ -742,7 +742,7 @@ class FlightPathPainter extends CustomPainter {
         Offset(size.width * 0.15, size.height * 0.70),
         9,
         Paint()
-          ..color = const Color(0xFFFF6B6B).withOpacity(0.3)
+          ..color = const Color(0xFFFF6B6B).withValues(alpha: 0.3)
           ..style = PaintingStyle.stroke
           ..strokeWidth = 2,
       );
@@ -802,7 +802,7 @@ class LandscapePainter extends CustomPainter {
 
     // Snow caps
     final snowPaint = Paint()
-      ..color = const Color(0xFF1E3A50).withOpacity(0.8)
+      ..color = const Color(0xFF1E3A50).withValues(alpha: 0.8)
       ..style = PaintingStyle.fill;
 
     void drawSnowCap(double tipX, double tipY, double width) {

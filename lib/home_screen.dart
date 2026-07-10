@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFFFD700).withOpacity(0.3),
+                color: const Color(0xFFFFD700).withValues(alpha: 0.3),
                 blurRadius: 30,
                 spreadRadius: 5,
               ),
@@ -192,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFFFFD700).withOpacity(0.4),
+              color: const Color(0xFFFFD700).withValues(alpha: 0.4),
               blurRadius: 20,
               spreadRadius: 2,
               offset: const Offset(0, 4),
@@ -247,9 +247,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 14),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
+            color: Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFFFFD700).withOpacity(0.3)),
+            border: Border.all(color: const Color(0xFFFFD700).withValues(alpha: 0.3)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -276,9 +276,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.03),
+        color: Colors.white.withValues(alpha: 0.03),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withOpacity(0.08)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
       ),
       child: Column(
         children: [
@@ -329,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         backgroundColor: const Color(0xFF2D1500),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
-          side: BorderSide(color: const Color(0xFFFFD700).withOpacity(0.3)),
+          side: BorderSide(color: const Color(0xFFFFD700).withValues(alpha: 0.3)),
         ),
         title: Text(
           'Game Rules',

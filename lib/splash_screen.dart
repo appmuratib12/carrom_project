@@ -154,8 +154,8 @@ class _SplashScreenState extends State<SplashScreen>
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      const Color(0xFF56C569).withOpacity(0.18),
-                      const Color(0xFFFFF8F0).withOpacity(0.0),
+                      const Color(0xFF56C569).withValues(alpha: 0.18),
+                      const Color(0xFFFFF8F0).withValues(alpha: 0.0),
                     ],
                   ),
                 ),
@@ -188,7 +188,7 @@ class _SplashScreenState extends State<SplashScreen>
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: const Color(0xFF4CAF50).withOpacity(
+                            color: const Color(0xFF4CAF50).withValues(alpha:
                               0.15 * (2 - _pulse.value),
                             ),
                             width: 2,
@@ -333,13 +333,13 @@ class _LogoBadge extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF4CAF50).withOpacity(0.45),
+            color: const Color(0xFF4CAF50).withValues(alpha: 0.45),
             blurRadius: 28,
             spreadRadius: 0,
             offset: const Offset(0, 12),
           ),
           BoxShadow(
-            color: const Color(0xFF4CAF50).withOpacity(0.2),
+            color: const Color(0xFF4CAF50).withValues(alpha: 0.2),
             blurRadius: 60,
             spreadRadius: 10,
             offset: Offset.zero,
@@ -546,7 +546,7 @@ class _BackgroundBlobs extends StatelessWidget {
             height: size.width * 0.6,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: const Color(0xFF4CAF50).withOpacity(0.08),
+              color: const Color(0xFF4CAF50).withValues(alpha: 0.08),
             ),
           ),
         ),
@@ -559,7 +559,7 @@ class _BackgroundBlobs extends StatelessWidget {
             height: size.width * 0.55,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: const Color(0xFFFF8A65).withOpacity(0.07),
+              color: const Color(0xFFFF8A65).withValues(alpha: 0.07),
             ),
           ),
         ),
@@ -572,7 +572,7 @@ class _BackgroundBlobs extends StatelessWidget {
             height: size.width * 0.3,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: const Color(0xFFFDD835).withOpacity(0.06),
+              color: const Color(0xFFFDD835).withValues(alpha: 0.06),
             ),
           ),
         ),
@@ -630,7 +630,7 @@ class _LoadingDotsState extends State<_LoadingDots>
                   height: 7,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: const Color(0xFF4CAF50).withOpacity(
+                    color: const Color(0xFF4CAF50).withValues(alpha:
                       0.4 + 0.6 * scale,
                     ),
                   ),

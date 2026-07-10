@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'Appconstant/app_colors.dart';
+import 'Appconstant/carrom_board_painter.dart';
+import 'Appconstant/vec_2.dart';
 
-import 'Appconstant/AppColors.dart';
-import 'Appconstant/CarromBoardPainter.dart';
-import 'Appconstant/Vec2.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -33,8 +33,8 @@ class _GameScreenState extends State<GameScreen>
   // Scores
   int _p1Score = 0;
   int _p2Score = 0;
-  bool _queenPotted = false;
-  final bool _queenCovered = false;
+  bool queenPotted = false;
+  final bool queenCovered = false;
 
   // Drag state
   Offset? _dragStart;
@@ -43,10 +43,10 @@ class _GameScreenState extends State<GameScreen>
 
   // UI animations
   late AnimationController _turnAnimController;
-  late Animation<double> _turnAnim;
+  late Animation<double> turnAnim;
   late AnimationController _scoreAnimController;
   String? _lastEvent;
-  bool _gameOver = false;
+  bool gameOver = false;
   String _statusMessage = "Player 1's Turn — Aim & Flick!";
 
   // Board display area
@@ -58,7 +58,7 @@ class _GameScreenState extends State<GameScreen>
     super.initState();
     _turnAnimController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
-    _turnAnim = CurvedAnimation(
+     turnAnim = CurvedAnimation(
         parent: _turnAnimController, curve: Curves.elasticOut);
     _scoreAnimController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600));
@@ -134,7 +134,7 @@ class _GameScreenState extends State<GameScreen>
     final piece = _pieces.firstWhere((p) => p.id == pieceId, orElse: () => _pieces[0]);
 
     if (piece.type == 'queen') {
-      _queenPotted = true;
+      queenPotted = true;
       _showEvent('Queen potted! Cover it!');
       if (_currentPlayer == 1) {
         _p1Score += GameConfig.queenPoints;
@@ -203,7 +203,7 @@ class _GameScreenState extends State<GameScreen>
   void _onTurnEnd() {
     final activePieces = _pieces.where((p) => p.active && p.type != 'striker').length;
     if (activePieces == 0 || _p1Score + _p2Score >= 24) {
-      setState(() => _gameOver = true);
+      setState(() => gameOver = true);
       return;
     }
 
@@ -347,7 +347,9 @@ class _GameScreenState extends State<GameScreen>
               decoration: BoxDecoration(
                 color: AppColors.bgMid,
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColors.gold.withOpacity(0.3)),
+                border: Border.all(
+                  color: AppColors.gold.withValues(alpha: 0.3),
+                ),
               ),
               child: const Icon(Icons.arrow_back_ios_new,
                   color: AppColors.gold, size: 18),
@@ -365,13 +367,13 @@ class _GameScreenState extends State<GameScreen>
           GestureDetector(
             onTap: () {
               setState(() {
-                _gameOver = false;
+                 gameOver = false;
                 _p1Score = 0;
                 _p2Score = 0;
                 _currentPlayer = 1;
                 _isAiming = true;
                 _isMoving = false;
-                _queenPotted = false;
+                queenPotted = false;
                 _strikerX = 5.0;
                 _aimAngle = -90.0;
                 _power = 0.5;
@@ -384,7 +386,7 @@ class _GameScreenState extends State<GameScreen>
               decoration: BoxDecoration(
                 color: AppColors.bgMid,
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColors.gold.withOpacity(0.3)),
+                border: Border.all(color: AppColors.gold.withValues(alpha: 0.3)),
               ),
               child: const Icon(Icons.refresh, color: AppColors.gold, size: 18),
             ),
@@ -418,16 +420,16 @@ class _GameScreenState extends State<GameScreen>
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: active
-                ? [color.withOpacity(0.25), color.withOpacity(0.1)]
+                ? [color.withValues(alpha: 0.25), color.withValues(alpha:0.1)]
                 : [AppColors.bgMid, AppColors.bgMid],
           ),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: active ? color : AppColors.gold.withOpacity(0.15),
+            color: active ? color : AppColors.gold.withValues(alpha: 0.15),
             width: active ? 2 : 1,
           ),
           boxShadow: active
-              ? [BoxShadow(color: color.withOpacity(0.3), blurRadius: 12, spreadRadius: 1)]
+              ? [BoxShadow(color: color.withValues(alpha: 0.3), blurRadius: 12, spreadRadius: 1)]
               : [],
         ),
         child: Column(
@@ -468,9 +470,9 @@ class _GameScreenState extends State<GameScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: AppColors.gold.withOpacity(0.1),
+        color: AppColors.gold.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.gold.withOpacity(0.3)),
+        border: Border.all(color: AppColors.gold.withValues(alpha: 0.3)),
       ),
       child: Text(
         'VS',
@@ -492,7 +494,7 @@ class _GameScreenState extends State<GameScreen>
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [AppColors.accent.withOpacity(0.8), AppColors.accentLight.withOpacity(0.6)],
+            colors: [AppColors.accent.withValues(alpha: 0.8), AppColors.accentLight.withValues(alpha: 0.6)],
           ),
           borderRadius: BorderRadius.circular(10),
         ),
@@ -537,12 +539,12 @@ class _GameScreenState extends State<GameScreen>
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.gold.withOpacity(0.2),
+                  color: AppColors.gold.withValues(alpha: 0.2),
                   blurRadius: 20,
                   spreadRadius: 2,
                 ),
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.6),
+                  color: Colors.black.withValues(alpha: 0.6),
                   blurRadius: 30,
                   offset: const Offset(0, 8),
                 ),
@@ -597,7 +599,7 @@ class _GameScreenState extends State<GameScreen>
         decoration: BoxDecoration(
           color: AppColors.bgMid,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: AppColors.gold.withOpacity(0.1)),
+          border: Border.all(color: AppColors.gold.withValues(alpha: 0.1)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -614,7 +616,7 @@ class _GameScreenState extends State<GameScreen>
             Text(
               'Pieces moving...',
               style: GoogleFonts.rajdhani(
-                color: AppColors.gold.withOpacity(0.7),
+                color: AppColors.gold.withValues(alpha: 0.7),
                 fontSize: 15,
               ),
             ),
@@ -636,9 +638,9 @@ class _GameScreenState extends State<GameScreen>
                 child: SliderTheme(
                   data: SliderThemeData(
                     activeTrackColor: AppColors.gold,
-                    inactiveTrackColor: AppColors.gold.withOpacity(0.2),
+                    inactiveTrackColor: AppColors.gold.withValues(alpha: 0.2),
                     thumbColor: AppColors.gold,
-                    overlayColor: AppColors.gold.withOpacity(0.1),
+                    overlayColor: AppColors.gold.withValues(alpha: 0.1),
                     thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 10),
                   ),
                   child: Slider(
@@ -694,9 +696,9 @@ class _GameScreenState extends State<GameScreen>
                 child: SliderTheme(
                   data: SliderThemeData(
                     activeTrackColor: AppColors.strikerColor,
-                    inactiveTrackColor: AppColors.strikerColor.withOpacity(0.2),
+                    inactiveTrackColor: AppColors.strikerColor.withValues(alpha: 0.2),
                     thumbColor: AppColors.strikerColor,
-                    overlayColor: AppColors.strikerColor.withOpacity(0.1),
+                    overlayColor: AppColors.strikerColor.withValues(alpha: 0.1),
                     thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 10),
                   ),
                   child: Slider(
@@ -726,7 +728,7 @@ class _GameScreenState extends State<GameScreen>
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.gold.withOpacity(0.4),
+                  color: AppColors.gold.withValues(alpha: 0.4),
                   blurRadius: 16,
                   spreadRadius: 1,
                 ),
@@ -788,9 +790,9 @@ class _GameScreenState extends State<GameScreen>
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         decoration: BoxDecoration(
-          color: AppColors.bgMid.withOpacity(0.5),
+          color: AppColors.bgMid.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: AppColors.gold.withOpacity(0.1)),
+          border: Border.all(color: AppColors.gold.withValues(alpha: 0.1)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -804,7 +806,7 @@ class _GameScreenState extends State<GameScreen>
                 boxShadow: [
                   BoxShadow(
                     color: (_currentPlayer == 1 ? AppColors.player1Color : AppColors.player2Color)
-                        .withOpacity(0.5),
+                        .withValues(alpha:0.5),
                     blurRadius: 6,
                   ),
                 ],
