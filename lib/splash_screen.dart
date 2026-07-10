@@ -145,7 +145,7 @@ class _SplashScreenState extends State<SplashScreen>
           // ── Expanding circle burst ───────────────────────
           AnimatedBuilder(
             animation: _bgCircleScale,
-            builder: (_, __) => Transform.scale(
+            builder: (_, _) => Transform.scale(
               scale: _bgCircleScale.value,
               child: Container(
                 width: size.width * 1.6,
@@ -492,7 +492,7 @@ class _FloatingParticles extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: controller,
-      builder: (_, __) {
+      builder: (_, _) {
         return Stack(
           children: List.generate(_items.length, (i) {
             final t = (controller.value + i / _items.length) % 1.0;
@@ -614,7 +614,7 @@ class _LoadingDotsState extends State<_LoadingDots>
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _ctrl,
-      builder: (_, __) {
+      builder: (_, _) {
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: List.generate(3, (i) {

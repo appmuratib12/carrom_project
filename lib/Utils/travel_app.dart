@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen>
           _buildBackground(size),
           AnimatedBuilder(
             animation: _pathDraw,
-            builder: (_, __) => CustomPaint(
+            builder: (_, _) => CustomPaint(
               size: size,
               painter: FlightPathPainter(_pathDraw.value),
             ),
@@ -154,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen>
           ),
           AnimatedBuilder(
             animation: _floatAnim,
-            builder: (_, __) {
+            builder: (_, _) {
               return Stack(
                 children: [
                   // Card 1 – top left

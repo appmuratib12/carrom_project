@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-import 'AppColors.dart';
+import 'app_colors.dart';
 
 class CarromBoardPainter extends CustomPainter {
   final List<PieceData> pieces;
@@ -47,7 +47,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Wood grain lines
     final grainPaint = Paint()
-      ..color = AppColors.boardWoodDark.withOpacity(0.3)
+      ..color = AppColors.boardWoodDark.withValues(alpha: 0.3)
       ..strokeWidth = 1.2
       ..style = PaintingStyle.stroke;
 
@@ -100,7 +100,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Subtle texture
     final texturePaint = Paint()
-      ..color = Colors.black.withOpacity(0.04)
+      ..color = Colors.black.withValues(alpha: 0.04)
       ..strokeWidth = 0.5
       ..style = PaintingStyle.stroke;
     for (int i = 0; i < 30; i++) {
@@ -116,7 +116,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Diagonal lines from corners
     final diagPaint = Paint()
-      ..color = Colors.black.withOpacity(0.35)
+      ..color = Colors.black.withValues(alpha: 0.35)
       ..strokeWidth = 1.2
       ..style = PaintingStyle.stroke;
 
@@ -133,7 +133,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Main center circle (large)
     final circlePaint = Paint()
-      ..color = Colors.black.withOpacity(0.3)
+      ..color = Colors.black.withValues(alpha: 0.3)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.5;
     canvas.drawCircle(center, playSize * 0.15, circlePaint);
@@ -142,11 +142,11 @@ class CarromBoardPainter extends CustomPainter {
     canvas.drawCircle(center, playSize * 0.06, circlePaint);
 
     // Tiny center dot
-    final dotPaint = Paint()..color = Colors.black.withOpacity(0.5);
+    final dotPaint = Paint()..color = Colors.black.withValues(alpha: 0.5);
     canvas.drawCircle(center, 4, dotPaint);
 
     // Red center dot
-    final redDot = Paint()..color = AppColors.pieceQueen.withOpacity(0.7);
+    final redDot = Paint()..color = AppColors.pieceQueen.withValues(alpha: 0.7);
     canvas.drawCircle(center, 3, redDot);
 
     // Arrow lines (baseline for striker)
@@ -155,7 +155,7 @@ class CarromBoardPainter extends CustomPainter {
 
   void _drawBaselineArrows(Canvas canvas, double s, double margin) {
     final arrowPaint = Paint()
-      ..color = Colors.black.withOpacity(0.4)
+      ..color = Colors.black.withValues(alpha: 0.4)
       ..strokeWidth = 1.5
       ..style = PaintingStyle.stroke;
 
@@ -201,7 +201,7 @@ class CarromBoardPainter extends CustomPainter {
     for (final pos in pocketPositions) {
       // Shadow
       final shadowPaint = Paint()
-        ..color = Colors.black.withOpacity(0.6)
+        ..color = Colors.black.withValues(alpha: 0.6)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
       canvas.drawCircle(pos + const Offset(2, 2), pocketRadius, shadowPaint);
 
@@ -219,7 +219,7 @@ class CarromBoardPainter extends CustomPainter {
       // Inner sheen
       final sheenPaint = Paint()
         ..shader = RadialGradient(
-          colors: [Colors.white.withOpacity(0.08), Colors.transparent],
+          colors: [Colors.white.withValues(alpha: 0.08), Colors.transparent],
           center: const Alignment(-0.4, -0.4),
         ).createShader(Rect.fromCircle(center: pos, radius: pocketRadius));
       canvas.drawCircle(pos, pocketRadius, sheenPaint);
@@ -240,12 +240,12 @@ class CarromBoardPainter extends CustomPainter {
     final p1Active = currentPlayer == 1;
 
     final zonePaint1 = Paint()
-      ..color = (p1Active ? AppColors.player1Color : Colors.white).withOpacity(p1Active ? 0.15 : 0.05)
+      ..color = (p1Active ? AppColors.player1Color : Colors.white).withValues(alpha:p1Active ? 0.15 : 0.05)
       ..style = PaintingStyle.fill;
     canvas.drawRect(Rect.fromLTWH(zoneX, p1ZoneY - 15, zoneWidth, 15), zonePaint1);
 
     final zonePaint2 = Paint()
-      ..color = (!p1Active ? AppColors.player2Color : Colors.white).withOpacity(!p1Active ? 0.15 : 0.05)
+      ..color = (!p1Active ? AppColors.player2Color : Colors.white).withValues(alpha:!p1Active ? 0.15 : 0.05)
       ..style = PaintingStyle.fill;
     canvas.drawRect(Rect.fromLTWH(zoneX, p2ZoneY, zoneWidth, 15), zonePaint2);
   }
@@ -262,7 +262,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Draw dotted aim line
     final aimPaint = Paint()
-      ..color = AppColors.gold.withOpacity(0.7)
+      ..color = AppColors.gold.withValues(alpha: 0.7)
       ..strokeWidth = 1.5
       ..style = PaintingStyle.stroke;
 
@@ -304,7 +304,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Power indicator circle around striker
     final powerPaint = Paint()
-      ..color = Color.lerp(Colors.green, Colors.red, power)!.withOpacity(0.5)
+      ..color = Color.lerp(Colors.green, Colors.red, power)!.withValues(alpha: 0.5)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.0;
     final strikerR = GameConfig.strikerRadius * scale;
@@ -351,7 +351,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Shadow
     final shadowPaint = Paint()
-      ..color = Colors.black.withOpacity(0.4)
+      ..color = Colors.black.withValues(alpha: 0.4)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
     canvas.drawCircle(Offset(px + 2, py + 2), r, shadowPaint);
 
@@ -373,14 +373,14 @@ class CarromBoardPainter extends CustomPainter {
 
     // Inner ring design
     final innerRingPaint = Paint()
-      ..color = borderColor.withOpacity(0.5)
+      ..color = borderColor.withValues(alpha: 0.5)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.8;
     canvas.drawCircle(Offset(px, py), r * 0.65, innerRingPaint);
 
     // Shine
     final shinePaint = Paint()
-      ..color = Colors.white.withOpacity(piece.type == 'black' ? 0.15 : 0.4)
+      ..color = Colors.white.withValues(alpha:piece.type == 'black' ? 0.15 : 0.4)
       ..style = PaintingStyle.fill;
     canvas.drawCircle(Offset(px - r * 0.3, py - r * 0.3), r * 0.25, shinePaint);
 
@@ -414,7 +414,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Shadow
     final shadowPaint = Paint()
-      ..color = Colors.black.withOpacity(0.5)
+      ..color = Colors.black.withValues(alpha: 0.5)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5);
     canvas.drawCircle(Offset(sx + 2, sy + 2), r, shadowPaint);
 
@@ -436,7 +436,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Inner rings
     final innerPaint = Paint()
-      ..color = AppColors.strikerBorder.withOpacity(0.5)
+      ..color = AppColors.strikerBorder.withValues(alpha: 0.5)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0;
     canvas.drawCircle(Offset(sx, sy), r * 0.7, innerPaint);
@@ -448,7 +448,7 @@ class CarromBoardPainter extends CustomPainter {
 
     // Shine
     final shinePaint = Paint()
-      ..color = Colors.white.withOpacity(0.6)
+      ..color = Colors.white.withValues(alpha: 0.6)
       ..style = PaintingStyle.fill;
     canvas.drawCircle(Offset(sx - r * 0.3, sy - r * 0.3), r * 0.2, shinePaint);
   }

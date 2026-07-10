@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'GameScreen.dart';
+import 'game_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: SafeArea(
           child: AnimatedBuilder(
             animation: _contentAnim,
-            builder: (_, __) {
+            builder: (_, _) {
               return Opacity(
                 opacity: _contentAnim.value.clamp(0.0, 1.0),
                 child: Transform.scale(
@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget _buildBoardPreview() {
     return AnimatedBuilder(
       animation: _bgController,
-      builder: (_, __) {
+      builder: (_, _) {
         return Container(
           width: 180,
           height: 180,
@@ -166,8 +166,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         Navigator.push(
           context,
           PageRouteBuilder(
-            pageBuilder: (_, __, ___) => const GameScreen(),
-            transitionsBuilder: (_, anim, __, child) {
+            pageBuilder: (_, _, _) => const GameScreen(),
+            transitionsBuilder: (_, anim, _, child) {
               return SlideTransition(
                 position:
                     Tween<Offset>(

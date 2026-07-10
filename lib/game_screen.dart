@@ -34,7 +34,7 @@ class _GameScreenState extends State<GameScreen>
   int _p1Score = 0;
   int _p2Score = 0;
   bool _queenPotted = false;
-  bool _queenCovered = false;
+  final bool _queenCovered = false;
 
   // Drag state
   Offset? _dragStart;
@@ -136,8 +136,11 @@ class _GameScreenState extends State<GameScreen>
     if (piece.type == 'queen') {
       _queenPotted = true;
       _showEvent('Queen potted! Cover it!');
-      if (_currentPlayer == 1) _p1Score += GameConfig.queenPoints;
-      else _p2Score += GameConfig.queenPoints;
+      if (_currentPlayer == 1) {
+        _p1Score += GameConfig.queenPoints;
+      } else {
+        _p2Score += GameConfig.queenPoints;
+      }
     } else {
       final isOwnPiece = (_currentPlayer == 1 && piece.type == 'black') ||
           (_currentPlayer == 2 && piece.type == 'white');
